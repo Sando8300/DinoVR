@@ -6769,6 +6769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4438491446286834351}
   - component: {fileID: 375591988322153853}
+  - component: {fileID: 7051184012162524450}
   m_Layer: 6
   m_Name: gate
   m_TagString: Untagged
@@ -6816,6 +6817,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7051184012162524450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737853479540812007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfb565f3333f5543810cc4e3422296a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3805693396565816425
 GameObject:
   m_ObjectHideFlags: 0
@@ -8786,6 +8799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8478921822912368130}
   - component: {fileID: 4706921235604899600}
+  - component: {fileID: 6958174484439345091}
   m_Layer: 6
   m_Name: gate
   m_TagString: Untagged
@@ -8833,6 +8847,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6958174484439345091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819099064175633181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfb565f3333f5543810cc4e3422296a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4822462521284133457
 GameObject:
   m_ObjectHideFlags: 0
@@ -8842,6 +8868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6190182293738478865}
+  - component: {fileID: 8375094878168919833}
   m_Layer: 0
   m_Name: gate
   m_TagString: Untagged
@@ -8867,6 +8894,27 @@ Transform:
   - {fileID: 4737112847743559592}
   m_Father: {fileID: 1650821610683632889}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &8375094878168919833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822462521284133457}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.84, z: -0.53}
 --- !u!1 &4828348843705968905
 GameObject:
   m_ObjectHideFlags: 0
@@ -10164,6 +10212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1446876234755515750}
   - component: {fileID: 2160515440989027317}
+  - component: {fileID: 4761856471932326661}
   m_Layer: 6
   m_Name: gate
   m_TagString: Untagged
@@ -10211,6 +10260,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4761856471932326661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5619035023275560359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfb565f3333f5543810cc4e3422296a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5664311085991083276
 GameObject:
   m_ObjectHideFlags: 0
@@ -10221,6 +10282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 108917092210800260}
   - component: {fileID: 4386034633469869960}
+  - component: {fileID: 8439915060562894893}
   m_Layer: 6
   m_Name: gate
   m_TagString: Untagged
@@ -10268,6 +10330,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8439915060562894893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664311085991083276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfb565f3333f5543810cc4e3422296a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5701216229926038499
 GameObject:
   m_ObjectHideFlags: 0

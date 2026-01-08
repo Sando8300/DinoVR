@@ -1,60 +1,49 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 public class BattleRoomManager : MonoBehaviour
 {
-    [Header("¿¬°á: ³» ¹æÀÇ ¹® 4°³")]
+    [Header("ì—°ê²°")]
     public SimpleLockDoor[] myDoors;
+    public GameObject[] invisibleWalls;
 
-    [Header("¼³Á¤: ¸ó½ºÅÍ¿Í À§Ä¡")]
-    public GameObject monsterPrefab; // ¼ÒÈ¯ÇÒ ¸ó½ºÅÍ (¾øÀ¸¸é ¾ÈÀüÇÑ ¹æ)
-    public Transform[] spawnPoints;  // ¼ÒÈ¯ À§Ä¡µé
+    [Header("ëª¬ìŠ¤í„° (ëŸ­í‚¤ë§µì€ ë¹„ì›Œë‘ì„¸ìš”)")]
+    public GameObject monsterPrefab;
+    public Transform[] spawnPoints;
 
-    // ³»ºÎ »óÅÂ º¯¼ö
     private bool isCleared = false;
     private bool battleStarted = false;
     private List<GameObject> activeMonsters = new List<GameObject>();
 
     void Start()
     {
-        // 1. °ÔÀÓ ½ÃÀÛ ½Ã ¹®Àº ¸ğµÎ ¿­¾îµÒ (ÇÔÁ¤ ¼¼ÆÃ)
-        foreach (var door in myDoors)
-        {
-            if (door != null) door.Open();
-        }
+        foreach (var door in myDoors) if (door) door.Open();
+        foreach (var wall in invisibleWalls) if (wall) wall.SetActive(false);
     }
 
-    // ÇÃ·¹ÀÌ¾î°¡ »ç´Ù¸® Å¸°í ¿Ã¶ó¿Í¼­ ¹Ù´Ú(Æ®¸®°Å)À» ¹â¾ÒÀ» ¶§
     void OnTriggerEnter(Collider other)
     {
         if (isCleared || battleStarted) return;
-
-        if (other.CompareTag("Player"))
-        {
-            StartBattle();
-        }
+        if (other.CompareTag("Player")) StartBattle();
     }
 
     void StartBattle()
     {
         battleStarted = true;
 
-        // ¸ó½ºÅÍ°¡ ¾ø°Å³ª ½ºÆù Æ÷ÀÎÆ®°¡ ¾ø´Â ¹æ(¾ÈÀüÇÑ ¹æ/½ÃÀÛ ¹æ)ÀÎ °æ¿ì
+        // â˜… ëŸ­í‚¤ë§µ ì²˜ë¦¬ ë¡œì§ â˜…
+        // ëª¬ìŠ¤í„°ê°€ ì—†ìœ¼ë©´ -> "ì¦‰ì‹œ ìŠ¹ë¦¬(true)" ì²˜ë¦¬ -> í™•ë¥  ì¦ê°€!
         if (monsterPrefab == null || spawnPoints.Length == 0)
         {
-            // ÀüÅõ ¾øÀÌ ¹Ù·Î Å¬¸®¾î Ã³¸® (¹® ¾È Àá±×°í ³öµÒ)
-            // È®·üÀ» ¿Ã¸±Áö ¸»Áö´Â ¼±ÅÃ »çÇ× (¿©±â¼­´Â ¾ÈÀüÇÑ ¹æÀº È®·ü ¾È ¿Ã¸²)
-            isCleared = true;
+            Debug.Log("ğŸ€ ëŸ­í‚¤ë§µ! ëª¬ìŠ¤í„° ì—†ì´ ë°”ë¡œ í´ë¦¬ì–´ ì²˜ë¦¬.");
+            EndBattle(true);
             return;
         }
 
-        // 1. ÇÔÁ¤ ¹ßµ¿! ¹® ´İ±â
-        foreach (var door in myDoors)
-        {
-            if (door != null) door.Close();
-        }
+        // ê³µë£¡ë§µ: ë¬¸ ë‹«ê³  ì „íˆ¬ ì‹œì‘
+        foreach (var door in myDoors) if (door) door.Close();
+        foreach (var wall in invisibleWalls) if (wall) wall.SetActive(true);
 
-        // 2. ¸ó½ºÅÍ ¼ÒÈ¯
         foreach (var sp in spawnPoints)
         {
             if (sp != null)
@@ -67,32 +56,23 @@ public class BattleRoomManager : MonoBehaviour
 
     void Update()
     {
-        // ÀüÅõ ÁßÀÏ ¶§ ¸ó½ºÅÍ »óÅÂ Ã¼Å©
         if (battleStarted && !isCleared)
         {
-            // Á×¾î¼­ »ç¶óÁø(null) ¸ó½ºÅÍ´Â ¸®½ºÆ®¿¡¼­ Á¦°Å
             activeMonsters.RemoveAll(x => x == null);
-
-            // ¸ó½ºÅÍ°¡ Àü¸êÇß´Ù¸é?
-            if (activeMonsters.Count == 0)
-            {
-                EndBattle();
-            }
+            if (activeMonsters.Count == 0) EndBattle(true);
         }
     }
 
-    void EndBattle()
+    void EndBattle(bool isVictory)
     {
         isCleared = true;
 
-        // 1. º¸»ó: ¹® ´Ù½Ã ¿­±â
-        foreach (var door in myDoors)
-        {
-            if (door != null) door.Open();
-        }
+        // ë¬¸ ì—´ê¸°
+        foreach (var door in myDoors) if (door) door.Open();
+        foreach (var wall in invisibleWalls) if (wall) wall.SetActive(false);
 
-        // 2. ¸Å´ÏÀú¿¡°Ô º¸°íÇØ¼­ Å»Ãâ È®·ü Áõ°¡ (+5%)
-        if (MapManager.Instance != null)
+        // â˜… ìŠ¹ë¦¬ ì‹œ(ëŸ­í‚¤ë§µ í¬í•¨) ë§¤ë‹ˆì €ì—ê²Œ ë³´ê³ í•˜ì—¬ í™•ë¥  ì¦ê°€
+        if (isVictory && MapManager.Instance != null)
         {
             MapManager.Instance.IncreaseChance();
         }
