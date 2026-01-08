@@ -69,7 +69,7 @@ public class DinoAttackSystem : MonoBehaviour
             if (hitCollider.CompareTag(targetTag))
             {
                 // 플레이어 스크립트 찾아서 데미지 주기
-                PlayerHealth player = hitCollider.GetComponent<PlayerHealth>();
+                GameManager player = hitCollider.GetComponent<GameManager>();
                 // 혹은 GameManager를 통해 접근
                 // PlayerHealth player = GameManager.Instance.GetComponent<PlayerHealth>(); 
 
