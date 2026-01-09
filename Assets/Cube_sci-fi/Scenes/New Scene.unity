@@ -913,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 123532, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 407996, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
       propertyPath: m_LocalPosition.x
@@ -974,6 +974,10 @@ PrefabInstance:
     - target: {fileID: 11438276, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
       propertyPath: canWalk
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438276, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11438276, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
       propertyPath: herbivorous
