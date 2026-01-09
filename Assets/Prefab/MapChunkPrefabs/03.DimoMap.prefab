@@ -6517,7 +6517,7 @@ MonoBehaviour:
   - {fileID: 7832513096388131750}
   - {fileID: 3832606816356947091}
   - {fileID: 982026875009209955}
-  monsterPrefab: {fileID: 0}
+  monsterPrefab: {fileID: 676716124650197762, guid: a0f9cb95aa464474aa0ce93e4287484b, type: 3}
   spawnPoints:
   - {fileID: 1968038433852096270}
   - {fileID: 1966790832093070399}

@@ -8654,7 +8654,7 @@ MonoBehaviour:
   - {fileID: 1218382186119560033}
   - {fileID: 7535188270501993792}
   - {fileID: 8787713507014816241}
-  monsterPrefab: {fileID: 0}
+  monsterPrefab: {fileID: 5290029738213900835, guid: 6dddbc505f167ee4fb1bb7e3f5a42de8, type: 3}
   spawnPoints:
   - {fileID: 6972931918300905803}
 --- !u!1 &4232489011425873689
