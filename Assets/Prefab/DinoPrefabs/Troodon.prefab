@@ -2912,13 +2912,14 @@ GameObject:
   - component: {fileID: 6974500853554630382}
   - component: {fileID: 4516392136023767100}
   - component: {fileID: 3843111563964575457}
+  - component: {fileID: 3921514909010480791}
   m_Layer: 9
   m_Name: Troodon
   m_TagString: Creature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2208250715148695064
 Transform:
   m_ObjectHideFlags: 0
@@ -2929,7 +2930,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.08, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6661676615194693663}
@@ -3215,7 +3216,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7777419243511429590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5c51c59d7912634f9127c7e4d3f667d, type: 3}
   m_Name: 
@@ -3398,6 +3399,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
+--- !u!114 &3921514909010480791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777419243511429590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb1a901e370a934f97587c766ec4417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8.5
+  rotSpeed: 3
+  attackRange: 6
+  maxHealth: 100
 --- !u!1 &7801422458349198527
 GameObject:
   m_ObjectHideFlags: 0

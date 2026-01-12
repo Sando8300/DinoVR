@@ -31,11 +31,11 @@ public class BattleRoomManager : MonoBehaviour
     {
         battleStarted = true;
 
-        // ★ 럭키맵 처리 로직 ★
+        // 럭키맵 처리 로직 
         // 몬스터가 없으면 -> "즉시 승리(true)" 처리 -> 확률 증가!
         if (monsterPrefab == null || spawnPoints.Length == 0)
         {
-            Debug.Log("🍀 럭키맵! 몬스터 없이 바로 클리어 처리.");
+            Debug.Log("럭키맵! 몬스터 없이 바로 클리어 처리.");
             EndBattle(true);
             return;
         }

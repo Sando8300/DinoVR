@@ -307,13 +307,14 @@ GameObject:
   - component: {fileID: 3162543640499010412}
   - component: {fileID: 6136502360293360456}
   - component: {fileID: 7174282137906526930}
+  - component: {fileID: 4336760757241466191}
   m_Layer: 9
   m_Name: Dimorphodon
   m_TagString: Creature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5332621323471066670
 Transform:
   m_ObjectHideFlags: 0
@@ -324,7 +325,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: 1, z: 12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5206351953531666932}
@@ -610,7 +611,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676716124650197762}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47767f9586b11154e8574bccfd0ba2e3, type: 3}
   m_Name: 
@@ -788,6 +789,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 7
+--- !u!114 &4336760757241466191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676716124650197762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb1a901e370a934f97587c766ec4417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  rotSpeed: 3
+  attackRange: 5
+  maxHealth: 100
 --- !u!1 &677142184840565376
 GameObject:
   m_ObjectHideFlags: 0

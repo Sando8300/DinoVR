@@ -52,7 +52,7 @@ public class MapManager : MonoBehaviour
         spawnedRooms.Add(targetGrid, newRoom);
     }
 
-    // ★ 핵심 확률 로직 ★
+    // 핵심 확률 로직
     GameObject GetRandomRoomPrefab()
     {
         // 1. 현재 클리어 횟수에 따른 각 방의 확률 계산
@@ -98,6 +98,6 @@ public class MapManager : MonoBehaviour
 
         if (currentEscapeChance > 100f) currentEscapeChance = 100f;
 
-        Debug.Log($"📈 [클리어 {totalClears}회] 탈출확률: {currentEscapeChance}% (공룡: {Mathf.Max(0, startDinoChance - totalClears * decayDino)}% / 럭키: {Mathf.Max(0, startLuckyChance - totalClears * decayLucky)}%)");
+        Debug.Log($"[클리어 {totalClears}회] 탈출확률: {currentEscapeChance}% (공룡: {Mathf.Max(0, startDinoChance - totalClears * decayDino)}% / 럭키: {Mathf.Max(0, startLuckyChance - totalClears * decayLucky)}%)");
     }
 }
