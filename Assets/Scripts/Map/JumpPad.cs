@@ -1,65 +1,130 @@
-using UnityEngine;
 using System.Collections;
+using Unity.AI.Navigation;
+using Unity.Services.Analytics;
+using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    [Header("점프 설정")]
-    public float jumpHeight = 3.0f;  // 얼마나 높이 뛸지
-    public float duration = 0.5f;    // 체공 시간 (짧을수록 빠르게 튀어 오름)
-    public bool forwardJump = false; // 체크하면 '보는 방향'으로도 날아감
-
-    private bool isActive = false;   // 중복 작동 방지
-
+    
     void OnTriggerEnter(Collider other)
     {
-        if (isActive) return;
+        if (isJumped) return;
 
-        // 태그가 Player이거나, 부모 중에 Player 태그가 있는지 확인
+        // 플레이어 확인 (Tag: Player)
         if (other.CompareTag("Player") || other.transform.root.CompareTag("Player"))
         {
-            // XR Origin에는 보통 CharacterController가 있습니다. 그걸 찾습니다.
-            CharacterController cc = other.transform.root.GetComponentInChildren<CharacterController>();
 
-            if (cc != null)
-            {
-                Debug.Log("점프 가동! (Rigidbody 없음)");
-                StartCoroutine(DoJump(cc, other.transform.root));
-            }
-            else
-            {
-                Debug.LogWarning("플레이어에게 CharacterController가 없습니다!");
-            }
+            player = other.GetComponent<Transform>();
+         
+                Debug.Log($"점프시작");
+                StartCoroutine(General());
+           
         }
     }
 
-    IEnumerator DoJump(CharacterController cc, Transform playerRoot)
+  /*  IEnumerator DoParabolicJump(CharacterController cc)
     {
-        isActive = true;
+        isBouncing = true;
         float elapsed = 0f;
 
-        // 점프 방향 결정 (기본: 위쪽 / 옵션: 위 + 플레이어가 보는 앞쪽)
-        Vector3 jumpDir = Vector3.up;
-        if (forwardJump)
-        {
-            jumpDir += playerRoot.forward * 0.5f; // 앞으로도 살짝 밀어줌
-            jumpDir.Normalize();
-        }
+        // 1. 시작점과 도착점 계산
+        Vector3 startPos = cc.transform.position;
+        Vector3 endPos = landingPoint.position;
 
         while (elapsed < duration)
         {
-            // 시간 흐름에 따라 힘이 줄어드는 곡선 만들기 (자연스러운 점프)
-            // 1.0에서 시작해서 0.0으로 줄어듦
-            float strength = Mathf.Lerp(jumpHeight, 0, elapsed / duration);
+            // 0 ~ 1 사이의 진행률 (normalizedTime)
+            float t = elapsed / duration;
 
-            // 실제 이동 명령 (물리 엔진 무시하고 강제 이동)
-            cc.Move(jumpDir * strength * Time.deltaTime);
+            // 2. 직선 이동 (Lerp): 시작점 -> 도착점 사이의 현재 위치
+            Vector3 linearPos = Vector3.Lerp(startPos, endPos, t);
+
+            // 3. 높이 계산 (포물선 공식)
+            // 보내주신 코드: t - t*t (최대 0.25) -> 여기에 4를 곱해야 설정한 height만큼 정확히 올라갑니다.
+            float yOffset = 4 * height * (t - t * t);
+
+            // 4. 최종 목표 위치
+            Vector3 targetPos = linearPos + Vector3.up * yOffset;
+
+            // 5. 이동 실행 (CharacterController.Move 사용)
+            // 현재 위치와 목표 위치의 차이(Delta)만큼 이동
+            Vector3 moveDir = targetPos - cc.transform.position;
+            cc.Move(moveDir);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // 쿨타임 살짝 줌
+        // 6. 정확한 착지 보정
+        cc.Move(endPos - cc.transform.position);
+
+        // 쿨타임
         yield return new WaitForSeconds(0.5f);
-        isActive = false;
+        isBouncing = false;
     }
+
+    // 에디터에서 도착 지점까지 선을 그려줌 (디버그용)
+    private void OnDrawGizmos()
+    {
+        if (landingPoint != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, landingPoint.position);
+            Gizmos.DrawWireSphere(landingPoint.position, 0.3f);
+        }
+    }
+*/
+
+    public float jumpDelay = 3;
+    public bool isJumped = false;
+     float nomarlizeTime;
+    public Transform player;
+    public Vector3 endpos;
+    public float height = 1;
+    public float duration = 2;
+    public float fwd;
+    public float upd;
+
+    private void Awake()
+    {
+        //imsi = new Vector3(0, 10, 1);
+        nomarlizeTime = 0;
+    }
+    IEnumerator General()
+    {
+        nomarlizeTime = 0;
+        endpos = transform.position + player.forward * fwd + player.up * upd;
+        isJumped = true;
+        while (jumpDelay < 0.8f)
+        {
+            jumpDelay += Time.deltaTime;
+            yield return null;
+        }
+
+
+        
+        while (nomarlizeTime < 1f)
+        {
+
+            float yOffset = height * (nomarlizeTime - nomarlizeTime * nomarlizeTime);
+            player.position = Vector3.Lerp(transform.position, endpos, nomarlizeTime) + height * Vector3.up * yOffset;
+            nomarlizeTime = nomarlizeTime + Time.deltaTime / duration;
+            yield return null;
+
+        }
+
+
+        while (jumpDelay < 1.5f)
+        {
+            jumpDelay += Time.deltaTime;
+            yield return null;
+        }
+
+
+        isJumped = false;
+
+
+
+    }
+
 }

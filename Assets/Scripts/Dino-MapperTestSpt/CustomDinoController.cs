@@ -7,6 +7,7 @@ public class CustomDinoController : MonoBehaviour
     public float rotSpeed = 2.0f;        // 회전 속도
     public float attackRange = 2.5f;     // 공격 사거리
     public int maxHealth = 100;          // 체력
+    public float distance; 
 
     // 내부 변수
     private Animator anim;
@@ -45,15 +46,17 @@ public class CustomDinoController : MonoBehaviour
         if (isDead || player == null) return;
 
         // 플레이어와의 거리 계산
-        float distance = Vector3.Distance(transform.position, player.position);
+        distance = Vector3.Distance(transform.position, player.position);
 
         // 공격 범위 안에 들어왔는가?
         if (distance <= attackRange)
         {
+            Debug.Log("공격 중");
             DoAttack();
         }
         else
         {
+            Debug.Log("추적 중");
             DoChase();
         }
     }
