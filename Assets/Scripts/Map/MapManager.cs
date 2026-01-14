@@ -66,6 +66,7 @@ public class MapManager : MonoBehaviour
 
         // [우선순위 1] 탈출 방 (현재 확률만큼)
         // 예: 5%면 0~5 사이
+        // 여기서 SceneChange!!
         cumulative += currentEscapeChance;
         if (dice < cumulative) return exitRoomPrefab;
 
