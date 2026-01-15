@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - Creature
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Door
-  - 
-  - 
+  - Obstacles
+  - Object
   - 
   - 
   - 
